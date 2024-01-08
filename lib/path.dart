@@ -14,22 +14,51 @@ class pathPage extends StatefulWidget {
 
 class _pathPageState extends State<pathPage> {
 
-  List _items = [];
+  late List _items;
 
-  Future <void> readJson() async{
-    final response = await rootBundle.loadString('assets/poetry.json');
-    final data = await json.decode(response);
-    setState(() {
-      _items = data[widget.language];
-    });
+  @override
+  void initState() {
+    super.initState();
+    _items = []; 
+    readJson();
   }
 
-  final List<Color> cardColors = [
-    Color(0xFF607274),
-    Color(0xFFFAEED1),
-    Color(0xFFDED0B6),
-    Color(0xFFB2A59B),
-  ];
+    Future<void> readJson() async {
+    try {
+      final response = await rootBundle.loadString('assets/poetry.json');
+      final data = await json.decode(response);
+      setState(() {
+        _items = data[widget.language] ?? []; // Handle empty case
+      });
+    } catch (e) {
+      print('Error loading JSON: $e');
+    }
+  }
+
+    Widget customButton(int index) {
+    return Container(
+      width: 150,
+      height: 150,
+      child: ElevatedButton(
+        onPressed: () {
+          if (index < _items.length) {
+            var snackBar = SnackBar(content: Text(_items[index]['url']));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => poemPage(language: widget.language, poem: index),
+            ));
+          }
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.people_alt_rounded, size: 38),
+            if (index < _items.length) Text(_items[index]['title']),
+          ],
+        ),
+      ),
+    );
+  }
 
   
   @override
@@ -46,8 +75,7 @@ class _pathPageState extends State<pathPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.all(16.0),
+                height: 100,
                ),
               ],
             ),
@@ -56,95 +84,31 @@ class _pathPageState extends State<pathPage> {
             
             children: [
               Container(width: 50,),
-              SizedBox(
-                      height: 150,
-                      width: 150,
-                      child: ElevatedButton(
-                        child: Column (
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                               Icon(Icons.people_alt_rounded,size: 38,),
-                               Text(_items[0]['title'])
-                              ],),
-                        onPressed: (){
-                                    var snackBar = SnackBar(content: Text(_items[0]['url']));
-                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => poemPage(language: widget.language, poem: 0)));
-                                  },),
-                    ),
+              customButton(0)
             ],
           ),
           Container(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(width: 15,),
-              SizedBox(
-                      height: 150,
-                      width: 150,
-                      child: ElevatedButton(
-                        child: Column (
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                               Icon(Icons.remove_red_eye_rounded,size: 38,),
-                               Text(_items[1]['title'])
-                              ],),
-                        onPressed: (){
-                                    var snackBar = SnackBar(content: Text(_items[1]['url']));
-                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => poemPage(language: widget.language, poem: 1)));
-                                  },),
-                    ),
+              Container(width: 78,),
+              customButton(1)
             ],
           ),
           Container(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(width: 25,),
-              SizedBox(
-                      height: 150,
-                      width: 150,
-                      child: ElevatedButton(
-                        child: Column (
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                               Icon(Icons.handshake_rounded,size: 38,),
-                               Text(_items[2]['title'])
-                              ],),
-                        onPressed: (){
-                                    var snackBar = SnackBar(content: Text(_items[2]['url']));
-                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => poemPage(language: widget.language, poem: 2)));
-                                  },),
-                    ),
+              Container(width: 135,),
+              customButton(2)
             ],
           ),
           Container(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(width: 45,),
-              SizedBox(
-                      height: 150,
-                      width: 150,
-                      child: ElevatedButton(
-                        child: Column (
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                               Icon(Icons.people_alt,size: 38,),
-                               Text(_items[3]['title'])
-                              ],),
-                        onPressed: (){
-                                    var snackBar = SnackBar(content: Text(_items[3]['url']));
-                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => poemPage(language: widget.language, poem: 3)));
-                                  },),
-                    ),
+              Container(width: 190,),
+              customButton(3)
             ],
           ),
           

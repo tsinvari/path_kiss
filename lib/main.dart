@@ -55,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Container(
+                height: 100,
+               ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -62,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: const EdgeInsets.symmetric(vertical: 20.0),
                 child: DropdownButton<String>(
                 hint: Text("Language"),
-                value: null,
+                value: selecLanguage,
                 items: languages.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -70,14 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   }).toList(),
                 onChanged: (String? value) {
-                  if (value == null){
+                  if (value != null){
                     setState(() {
-                      selecLanguage = "Español";
+                      selecLanguage = value;
                     });
-                  }else{
-                    setState(() {
-                      selecLanguage = value.toString();
-                    });}               
+                  }              
                   }),
               )
               ],
