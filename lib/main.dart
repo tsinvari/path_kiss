@@ -33,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
-  String languague_selected = "Español";
+  String selecLanguage = "Español";
 
   final List<Color> cardColors = [
     Color(0xFF607274),
@@ -72,11 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: (String? value) {
                   if (value == null){
                     setState(() {
-                      languague_selected = "Español";
+                      selecLanguage = "Español";
                     });
                   }else{
                     setState(() {
-                      languague_selected = value.toString();
+                      selecLanguage = value.toString();
                     });}               
                   }),
               )
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                   ElevatedButton(
                     onPressed: (){Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => pathPage(language: languague_selected,)));}, 
+                                        MaterialPageRoute(builder: (context) => pathPage(language: selecLanguage,)));}, 
                     child: Icon(Icons.next_plan_rounded)),                  
                 ],
               )

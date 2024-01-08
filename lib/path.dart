@@ -93,6 +93,8 @@ class _pathPageState extends State<pathPage> {
                         onPressed: (){
                                     var snackBar = SnackBar(content: Text(_items[1]['url']));
                                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => poemPage(language: widget.language, poem: 1)));
                                   },),
                     ),
             ],
@@ -110,11 +112,13 @@ class _pathPageState extends State<pathPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                                Icon(Icons.handshake_rounded,size: 38,),
-                               Text(_items[1]['title'])
+                               Text(_items[2]['title'])
                               ],),
                         onPressed: (){
                                     var snackBar = SnackBar(content: Text(_items[2]['url']));
                                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => poemPage(language: widget.language, poem: 2)));
                                   },),
                     ),
             ],
@@ -129,14 +133,16 @@ class _pathPageState extends State<pathPage> {
                       width: 150,
                       child: ElevatedButton(
                         child: Column (
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                                Icon(Icons.people_alt,size: 38,),
-                               Text(_items[1]['title'])
+                               Text(_items[3]['title'])
                               ],),
                         onPressed: (){
                                     var snackBar = SnackBar(content: Text(_items[3]['url']));
                                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => poemPage(language: widget.language, poem: 3)));
                                   },),
                     ),
             ],
