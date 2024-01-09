@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_kiss/poem.dart';
+import 'package:flutter_arc_text/flutter_arc_text.dart';
 
 class pathPage extends StatefulWidget {
 
@@ -49,29 +51,61 @@ class _pathPageState extends State<pathPage> {
             ));
           }
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(60), // Circular shape
+              ),
+              elevation: 8, // Elevation at the bottom
+            ),
+        child: 
+        Stack(
+        //  mainAxisAlignment: MainAxisAlignment.center,
+        alignment: Alignment.center,
           children: <Widget>[
-            Icon(Icons.people_alt_rounded, size: 38),
-            if (index < _items.length) Text(_items[index]['title']),
+            if (index < _items.length)
+               Image.asset(
+                  _items[index]['icon_path'],
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.contain,
+                ),
+            if (index < _items.length)  
+              ArcText(
+                  radius: 55, 
+                  text: _items[index]['title'],
+                  placement: Placement.inside,
+                  startAngle: -pi ,
+                  direction: Direction.counterClockwise,
+              ),
           ],
         ),
       ),
     );
   }
 
-      Widget customDot() {
+      Widget customDot(double angleFeet) {
     return Container(
       width: 50,
       height: 50,
       child: ElevatedButton(
         onPressed: () {},
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-        /*  children: <Widget>[
-            Icon(Icons.donut_small_rounded, size: 13),
-          ],*/
-        ),
+        style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25), // Circular shape
+              ),
+              elevation: 8, // Elevation at the bottom
+            ),
+        child: Transform.scale(
+          scale: 10,
+          child: Transform.rotate(
+            angle: angleFeet * (pi / 180),
+            child: Image.asset(
+                      "assets/icons/footprints.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,),
+          ),
+        )
       ),
     );
   }
@@ -91,7 +125,7 @@ class _pathPageState extends State<pathPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                height: 100,
+                height: 75,
                ),
               ],
             ),
@@ -107,7 +141,7 @@ class _pathPageState extends State<pathPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(width: 90,),
-              customDot()
+              customDot(135)
             ],
           ),
                     Container(height: 5,),
@@ -115,7 +149,7 @@ class _pathPageState extends State<pathPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(width: 120,),
-              customDot()
+              customDot(135)
             ],
           ),
           Container(height: 2,),
@@ -131,7 +165,7 @@ class _pathPageState extends State<pathPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(width: 175,),
-              customDot()
+              customDot(185)
             ],
           ),
                     Container(height: 10,),
@@ -139,7 +173,7 @@ class _pathPageState extends State<pathPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(width: 160,),
-              customDot()
+              customDot(185)
             ],
           ),
           Container(height: 10,),
@@ -155,7 +189,7 @@ class _pathPageState extends State<pathPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(width: 178,),
-              customDot()
+              customDot(135)
             ],
           ),
                     Container(height: 5,),
@@ -163,7 +197,7 @@ class _pathPageState extends State<pathPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(width: 200,),
-              customDot()
+              customDot(135)
             ],
           ),
           Container(height: 5,),
@@ -174,7 +208,7 @@ class _pathPageState extends State<pathPage> {
               customButton(3)
             ],
           ),
-          
+             Container(height: 75,),  
           ],
         ),
       ),
