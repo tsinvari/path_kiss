@@ -37,8 +37,8 @@ class _pathPageState extends State<pathPage> {
 
     Widget customButton(int index) {
     return Container(
-      width: 150,
-      height: 150,
+      width: 120,
+      height: 120,
       child: ElevatedButton(
         onPressed: () {
           if (index < _items.length) {
@@ -55,6 +55,22 @@ class _pathPageState extends State<pathPage> {
             Icon(Icons.people_alt_rounded, size: 38),
             if (index < _items.length) Text(_items[index]['title']),
           ],
+        ),
+      ),
+    );
+  }
+
+      Widget customDot() {
+    return Container(
+      width: 50,
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+        /*  children: <Widget>[
+            Icon(Icons.donut_small_rounded, size: 13),
+          ],*/
         ),
       ),
     );
@@ -81,33 +97,80 @@ class _pathPageState extends State<pathPage> {
             ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            
             children: [
-              Container(width: 50,),
+              Container(width: 35,),
               customButton(0)
             ],
           ),
-          Container(height: 5,),
+          Container(height: 15,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(width: 78,),
+              Container(width: 90,),
+              customDot()
+            ],
+          ),
+                    Container(height: 5,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(width: 120,),
+              customDot()
+            ],
+          ),
+          Container(height: 2,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(width: 138,),
               customButton(1)
             ],
           ),
-          Container(height: 5,),
+          Container(height: 15,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(width: 135,),
+              Container(width: 175,),
+              customDot()
+            ],
+          ),
+                    Container(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(width: 160,),
+              customDot()
+            ],
+          ),
+          Container(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(width: 140,),
               customButton(2)
+            ],
+          ),
+          Container(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(width: 178,),
+              customDot()
+            ],
+          ),
+                    Container(height: 5,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(width: 200,),
+              customDot()
             ],
           ),
           Container(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(width: 190,),
+              Container(width: 210,),
               customButton(3)
             ],
           ),

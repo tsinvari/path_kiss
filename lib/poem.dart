@@ -54,8 +54,8 @@ int currentIndex = 0;
             decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(_items[widget.poem]['image_url']),
-                  fit: BoxFit.fitWidth,
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken)
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop)
                 )
             ),
           ),
