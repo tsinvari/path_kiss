@@ -35,15 +35,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String selecLanguage = "Español";
 
-  final List<Color> cardColors = [
-    Color(0xFF607274),
-    Color(0xFFFAEED1),
-    Color(0xFFDED0B6),
-    Color(0xFFB2A59B),
-  ];
-
   final List<String> languages = [
-    "Español","English","Portugues", "Français"
+    "Español","English"
   ];
 
   @override
@@ -64,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                 margin: const EdgeInsets.symmetric(vertical: 20.0),
                 child: DropdownButton<String>(
-                hint: Text("Language"),
+                hint: const Text("Language"),
                 value: selecLanguage,
                 items: languages.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -90,12 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                           height: 140,
                           width: 300,
-                          child: Text("En el amor eres la luz mas certera"),
+                          child: const Text("En el amor eres la luz mas certera"),
                         ),
                   ElevatedButton(
                     onPressed: (){Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) => pathPage(language: selecLanguage,)));}, 
-                    child: Icon(Icons.next_plan_rounded)),                  
+                    child: const Icon(Icons.next_plan_rounded)),                  
                 ],
               )
           ),         

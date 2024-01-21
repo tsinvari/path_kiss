@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class poemPage extends StatefulWidget {
 
@@ -16,12 +17,22 @@ class _poemPageState extends State<poemPage> {
 int currentIndex = 0;
 
  late List _items = [];
+ late AudioPlayer _audioPlayer;
 
   @override
   void initState() {
     super.initState();
-    _items = []; 
+    _items = [];
+    _audioPlayer = AudioPlayer();
     readJson();
+    Future.delayed(const Duration(seconds: 1), () {
+      playBackgroundMusic();
+    });
+  }
+    @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
   }
 
 
@@ -32,17 +43,18 @@ int currentIndex = 0;
       setState(() {
         _items = data[widget.language] ?? []; // Handle empty case
       });
+    } catch (e) { }
+  }
+    Future<void> playBackgroundMusic() async {
+    try {
+      if (_items.isNotEmpty && widget.poem < _items.length) {
+      await _audioPlayer.play(UrlSource(_items[widget.poem]['mp3_url']));
+      }
     } catch (e) {
-      print('Error loading JSON: $e');
+      print('Error playing music: $e');
     }
   }
-  final List<Color> cardColors = [
-    Color(0xFF607274),
-    Color(0xFFFAEED1),
-    Color(0xFFDED0B6),
-    Color(0xFFB2A59B),
-  ];
-
+  
   @override
   Widget build(BuildContext context){
     readJson();
@@ -53,7 +65,8 @@ int currentIndex = 0;
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(_items[widget.poem]['image_url']),
+                //  image: AssetImage(_items[widget.poem]['image_url']),
+                  image: AssetImage("assets/images/background.png"),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop)
                 )

@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_kiss/poem.dart';
-import 'package:flutter_arc_text/flutter_arc_text.dart';
 
 class pathPage extends StatefulWidget {
 
@@ -37,47 +36,56 @@ class _pathPageState extends State<pathPage> {
     }
   }
 
-    Widget customButton(int index) {
-    return Container(
-      width: 120,
-      height: 120,
-      child: ElevatedButton(
-        onPressed: () {
-          if (index < _items.length) {
-            var snackBar = SnackBar(content: Text(_items[index]['url']));
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => poemPage(language: widget.language, poem: index),
-            ));
-          }
-        },
-        style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(60), // Circular shape
-              ),
-              elevation: 8, // Elevation at the bottom
-            ),
-        child: 
-        Stack(
-        //  mainAxisAlignment: MainAxisAlignment.center,
-        alignment: Alignment.center,
-          children: <Widget>[
-            if (index < _items.length)
-               Image.asset(
-                  _items[index]['icon_path'],
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.contain,
+    Widget customButton(int index, double angleRotationPic) {
+    return Transform.rotate(
+      angle: angleRotationPic * (pi / 180),
+      child: Container(
+        decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3), // Adjust the shadow color and opacity
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3), // Adjust the shadow offset
+          ),
+        ],
+      ),
+        child: GestureDetector(
+          onTap: () {
+            if (index < _items.length) {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => poemPage(language: widget.language, poem: index),
+              ));
+            }
+          },
+          child: 
+          Stack(
+          alignment: Alignment.center,
+            children: <Widget>[
+              if (index < _items.length)
+                 Image.asset(
+                    _items[index]['image_url'],
+                    width: 300,
+                    height: 300,
+                    fit: BoxFit.contain,
+                  ),
+              if (index < _items.length)  
+                Column(
+                  children: [
+                    Container(
+                      height: 250,
+                    ),              
+                    Text(
+                      _items[index]['title'],
+                      style: const TextStyle(
+                        fontSize: 24, // Adjust the font size as needed
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MarketPro')),
+                        
+                  ],
                 ),
-            if (index < _items.length)  
-              ArcText(
-                  radius: 55, 
-                  text: _items[index]['title'],
-                  placement: Placement.inside,
-                  startAngle: -pi ,
-                  direction: Direction.counterClockwise,
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -115,101 +123,57 @@ class _pathPageState extends State<pathPage> {
   Widget build(BuildContext context){
     readJson();
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'), 
+            fit: BoxFit.cover, 
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                  height: 75,
+                 ),
+                ],
+              ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                height: 75,
-               ),
+                  customButton(0,345)
               ],
             ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 35,),
-              customButton(0)
+            Container(height: 35,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                customButton(1,15)
+              ],
+            ),
+            Container(height: 35,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                customButton(2,325)
+              ],
+            ),
+            Container(height: 35,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                customButton(3,0)
+              ],
+            ),
+            Container(height: 75,),  
             ],
           ),
-          Container(height: 15,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 90,),
-              customDot(135)
-            ],
-          ),
-                    Container(height: 5,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 120,),
-              customDot(135)
-            ],
-          ),
-          Container(height: 2,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 138,),
-              customButton(1)
-            ],
-          ),
-          Container(height: 15,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 175,),
-              customDot(185)
-            ],
-          ),
-                    Container(height: 10,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 160,),
-              customDot(185)
-            ],
-          ),
-          Container(height: 10,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 140,),
-              customButton(2)
-            ],
-          ),
-          Container(height: 10,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 178,),
-              customDot(135)
-            ],
-          ),
-                    Container(height: 5,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 200,),
-              customDot(135)
-            ],
-          ),
-          Container(height: 5,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 210,),
-              customButton(3)
-            ],
-          ),
-             Container(height: 75,),  
-          ],
         ),
       ),
     );
