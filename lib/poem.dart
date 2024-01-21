@@ -48,7 +48,8 @@ int currentIndex = 0;
     Future<void> playBackgroundMusic() async {
     try {
       if (_items.isNotEmpty && widget.poem < _items.length) {
-      await _audioPlayer.play(UrlSource(_items[widget.poem]['mp3_url']));
+      await _audioPlayer.play(AssetSource(_items[widget.poem]['mp3_url']));
+//    await _audioPlayer.play(AssetSource('audios/deseo.mp3'));
       }
     } catch (e) {
       print('Error playing music: $e');
