@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-class poemPage extends StatefulWidget {
+class PoemPage extends StatefulWidget {
 
-  poemPage({super.key, required this.language, required this.poem});
+  PoemPage({super.key, required this.language, required this.poem});
   final String language;
   final int poem;
 
   @override
-  State<poemPage> createState() => _poemPageState();
+  State<PoemPage> createState() => PoemPageState();
 }
 
-class _poemPageState extends State<poemPage> {
+class PoemPageState extends State<PoemPage> {
 int currentIndex = 0;
 
  late List _items = [];
@@ -25,7 +25,7 @@ int currentIndex = 0;
     _items = [];
     _audioPlayer = AudioPlayer();
     readJson();
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(milliseconds: 300), () {
       playBackgroundMusic();
     });
   }
@@ -51,9 +51,7 @@ int currentIndex = 0;
       await _audioPlayer.play(AssetSource(_items[widget.poem]['mp3_url']));
 //    await _audioPlayer.play(AssetSource('audios/deseo.mp3'));
       }
-    } catch (e) {
-      print('Error playing music: $e');
-    }
+    } catch (e) {  }
   }
   
   @override
@@ -67,7 +65,7 @@ int currentIndex = 0;
             decoration: BoxDecoration(
                 image: DecorationImage(
                 //  image: AssetImage(_items[widget.poem]['image_url']),
-                  image: AssetImage("assets/images/background.png"),
+                  image: const AssetImage("assets/images/background.png"),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop)
                 )
@@ -88,12 +86,12 @@ int currentIndex = 0;
                   children: [
                     Text(
                       _items[widget.poem]['title'] ?? 'No title available',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                     const SizedBox(height: 20,),
                     if (_items.isNotEmpty && widget.poem < _items.length)
                     Text(
                       _items[widget.poem]['poem'] ?? 'No poem available',
-                      style: TextStyle(fontSize: 16),textAlign: TextAlign.center,),
+                      style: const TextStyle(fontSize: 16),textAlign: TextAlign.center,),
                     const SizedBox(height: 100,),
                         ]            
                       ),

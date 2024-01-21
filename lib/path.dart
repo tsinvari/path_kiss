@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_kiss/poem.dart';
 
-class pathPage extends StatefulWidget {
+class PathPage extends StatefulWidget {
 
-  pathPage({super.key, required this.language});
+  PathPage({super.key, required this.language});
   final String language;
 
   @override
-  State<pathPage> createState() => _pathPageState();
+  State<PathPage> createState() => PathPageState();
 }
 
-class _pathPageState extends State<pathPage> {
+class PathPageState extends State<PathPage> {
 
   late List _items;
 
@@ -46,7 +46,7 @@ class _pathPageState extends State<pathPage> {
             color: Colors.black.withOpacity(0.3), // Adjust the shadow color and opacity
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 3), // Adjust the shadow offset
+            offset: const Offset(0, 3), // Adjust the shadow offset
           ),
         ],
       ),
@@ -54,7 +54,7 @@ class _pathPageState extends State<pathPage> {
           onTap: () {
             if (index < _items.length) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => poemPage(language: widget.language, poem: index),
+                builder: (context) => PoemPage(language: widget.language, poem: index),
               ));
             }
           },
@@ -92,7 +92,7 @@ class _pathPageState extends State<pathPage> {
   }
 
       Widget customDot(double angleFeet) {
-    return Container(
+    return SizedBox(
       width: 50,
       height: 50,
       child: ElevatedButton(

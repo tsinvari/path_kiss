@@ -80,14 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 600,
               child: Column(
                 children: <Widget>[
-                  Container(
+                  const SizedBox(
                           height: 140,
                           width: 300,
-                          child: const Text("En el amor eres la luz mas certera"),
+                          child: Text("En el amor eres la luz mas certera"),
                         ),
                   ElevatedButton(
                     onPressed: (){Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => pathPage(language: selecLanguage,)));}, 
+                                        MaterialPageRoute(builder: (context) => PathPage(language: selecLanguage,)));}, 
                     child: const Icon(Icons.next_plan_rounded)),                  
                 ],
               )
