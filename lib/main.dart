@@ -42,57 +42,102 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-                height: 100,
-               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                margin: const EdgeInsets.symmetric(vertical: 20.0),
-                child: DropdownButton<String>(
-                hint: const Text("Language"),
-                value: selecLanguage,
-                items: languages.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                onChanged: (String? value) {
-                  if (value != null){
-                    setState(() {
-                      selecLanguage = value;
-                    });
-                  }              
-                  }),
-              )
-              ],
-            ),
-          Container(
-            alignment: Alignment.center,
-            height: 600,
-              child: Column(
-                children: <Widget>[
-                  const SizedBox(
-                          height: 140,
-                          width: 300,
-                          child: Text("En el amor eres la luz mas certera"),
-                        ),
-                  ElevatedButton(
-                    onPressed: (){Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => PathPage(language: selecLanguage,)));}, 
-                    child: const Icon(Icons.next_plan_rounded)),                  
+      body: DecoratedBox(
+        decoration:   BoxDecoration(
+          image: DecorationImage(
+            image: const AssetImage("assets/images/background.png"),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop)
+ 
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+         //   mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  height: 75,
+                 ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.2), borderRadius: BorderRadius.circular(10)
+                    ),           
+                    child: Theme(
+                      data: Theme.of(context).copyWith(
+                      canvasColor: Colors.black54),
+                      child: DropdownButton<String>(
+                      underline: SizedBox(),
+                      hint: const Text("Language", style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: 'MarketPro',),),
+                      value: selecLanguage,
+                      items: languages.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontFamily: 'MarketPro',
+                          ),),
+                          );
+                        }).toList(),
+                      onChanged: (String? value) {
+                        if (value != null){
+                          setState(() {
+                            selecLanguage = value;
+                          });
+                        }              
+                        }),
+                    ),
+                  ),
+                )
                 ],
-              )
-          ),         
-          ],
+              ),
+              Container(height: 30,),
+            Container(
+              alignment: Alignment.center,
+              height: 800,
+                child: Column(
+                  children: <Widget>[
+                     Container(
+                      decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2), // Soft colored box
+                      borderRadius: BorderRadius.circular(10), // Rounded corners
+                    ),
+                    padding: const EdgeInsets.all(16),
+                            width: 300,
+                            child: const Text("I like to think that in life everything has 4 phases, from the moment the desire comes to us to moment it comes true. \n\n    We desire,\n        we see, \n            we try, \n                we materialize.",
+                            style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: 'Verdana',
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white,
+                        ),),
+                          ),
+                    Container(height: 50),
+                    ElevatedButton(
+                      onPressed: (){Navigator.of(context).push(
+                                          MaterialPageRoute(builder: (context) => PathPage(language: selecLanguage,)));}, 
+                      child: const Text('Walk with me',
+                      style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: 'Verdana',
+                            fontStyle: FontStyle.italic,
+                            color: Colors.black,
+                        ),),
+                      ),                  
+                  ],
+                )
+            ),         
+            ],
+          ),
         ),
       ),
     );

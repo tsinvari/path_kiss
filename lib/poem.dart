@@ -49,7 +49,6 @@ int currentIndex = 0;
     try {
       if (_items.isNotEmpty && widget.poem < _items.length) {
       await _audioPlayer.play(AssetSource(_items[widget.poem]['mp3_url']));
-//    await _audioPlayer.play(AssetSource('audios/deseo.mp3'));
       }
     } catch (e) {  }
   }
@@ -64,10 +63,9 @@ int currentIndex = 0;
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                //  image: AssetImage(_items[widget.poem]['image_url']),
                   image: const AssetImage("assets/images/background.png"),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop)
+                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop)
                 )
             ),
           ),
@@ -86,13 +84,20 @@ int currentIndex = 0;
                   children: [
                     Text(
                       _items[widget.poem]['title'] ?? 'No title available',
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                      style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white54, fontSize: 26,fontFamily: 'MarketPro',),),
                     const SizedBox(height: 20,),
                     if (_items.isNotEmpty && widget.poem < _items.length)
-                    Text(
-                      _items[widget.poem]['poem'] ?? 'No poem available',
-                      style: const TextStyle(fontSize: 16),textAlign: TextAlign.center,),
-                    const SizedBox(height: 100,),
+                    Container(
+                      decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2), // Soft colored box
+                      borderRadius: BorderRadius.circular(10), // Rounded corners
+                    ),
+                    padding: const EdgeInsets.fromLTRB(2, 16, 2, 16),
+                      child: Text(
+                        _items[widget.poem]['poem'] ?? 'No poem available',
+                        style: const TextStyle(fontSize: 18, fontFamily: 'Verdana' ,color: Colors.white54),textAlign: TextAlign.center,),
+                    ),
+                    const SizedBox(height: 75,),
                         ]            
                       ),
                 ],

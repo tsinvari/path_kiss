@@ -73,7 +73,7 @@ class PathPageState extends State<PathPage> {
                 Column(
                   children: [
                     Container(
-                      height: 250,
+                      height: 230,
                     ),              
                     Text(
                       _items[index]['title'],
@@ -124,10 +124,12 @@ class PathPageState extends State<PathPage> {
     readJson();
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background.png'), 
-            fit: BoxFit.cover, 
+            image: const AssetImage('assets/images/background.png'), 
+            fit: BoxFit.cover,  
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop)
+
           ),
         ),
         child: SingleChildScrollView(
