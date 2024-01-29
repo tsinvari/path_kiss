@@ -81,10 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),*/
                     padding: const EdgeInsets.all(16),
                             width: 300,
-                            child: const Text("I like to think that in life everything has 4 phases, from the moment the desire comes to us to moment it comes true. \n\n    We desire,\n        we see, \n            we try, \n                we materialize.",
+                            child: const Text("I like to think that everything in life has 4 phases, from the moment the desire comes to us to moment it comes true. \n\n    We desire,\n        we see, \n            we try, \n                we materialize.",
                             style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: 'Verdana',
+                            fontSize: 30,
+                            fontFamily: 'WorstveldSling',
                             fontStyle: FontStyle.italic,
                             color: Colors.white,
                         ),),
