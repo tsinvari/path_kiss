@@ -128,7 +128,7 @@ class PathPageState extends State<PathPage> {
           image: DecorationImage(
             image: const AssetImage('assets/images/background.png'), 
             fit: BoxFit.cover,  
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop)
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(1),  BlendMode.dstOver)
 
           ),
         ),

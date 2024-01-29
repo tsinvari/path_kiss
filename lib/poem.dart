@@ -65,7 +65,7 @@ int currentIndex = 0;
                 image: DecorationImage(
                   image: const AssetImage("assets/images/background.png"),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop)
+                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(1),  BlendMode.dstOver)
                 )
             ),
           ),
@@ -74,7 +74,7 @@ int currentIndex = 0;
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(height: 50,),
+                const SizedBox(height: 20,),
                 Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(16.0),
@@ -84,8 +84,8 @@ int currentIndex = 0;
                   children: [
                     Text(
                       _items[widget.poem]['title'] ?? 'No title available',
-                      style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white54, fontSize: 26,fontFamily: 'MarketPro',),),
-                    const SizedBox(height: 20,),
+                      style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white, fontSize: 42,fontFamily: 'MarketPro',),),
+                    const SizedBox(height: 8,),
                     if (_items.isNotEmpty && widget.poem < _items.length)
                     Container(
                   /*    decoration: BoxDecoration(
@@ -95,7 +95,7 @@ int currentIndex = 0;
                     padding: const EdgeInsets.fromLTRB(2, 16, 2, 16),
                       child: Text(
                         _items[widget.poem]['poem'] ?? 'No poem available',
-                        style: const TextStyle(fontSize: 18, fontFamily: 'Verdana' ,color: Colors.white54),textAlign: TextAlign.center,),
+                        style: const TextStyle(fontSize: 18, fontFamily: 'Verdana' ,color: Colors.white),textAlign: TextAlign.center,),
                     ),
                     const SizedBox(height: 75,),
                         ]            
