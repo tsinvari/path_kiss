@@ -54,29 +54,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-         //   mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
+            Container(
                   height: 75,
                  ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+            Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                  margin: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.2), borderRadius: BorderRadius.circular(10)
-                    ),           
-                    child: Theme(
-                      data: Theme.of(context).copyWith(
-                      canvasColor: Colors.black54),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                    canvasColor: Colors.black54),
+                    child: Container(
+                      decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(10), // Set border radius here
+                    ),
                       child: DropdownButton<String>(
+                      dropdownColor: Colors.black.withOpacity(0),
                       underline: SizedBox(),
                       hint: const Text("Language", style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: 'MarketPro',),),
+                                    fontSize: 16,
+                                    fontFamily: 'MarketPro',),),
                       value: selecLanguage,
                       items: languages.map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
@@ -85,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             fontSize: 16,
                             color: Colors.white,
                             fontFamily: 'MarketPro',
-                          ),),
+                                                      ),),
                           );
                         }).toList(),
                       onChanged: (String? value) {
@@ -100,17 +101,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
                 ],
               ),
-              Container(height: 30,),
+            Container(height: 30,),
             Container(
               alignment: Alignment.center,
               height: 800,
                 child: Column(
                   children: <Widget>[
                      Container(
-                      decoration: BoxDecoration(
+            /*          decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.2), // Soft colored box
                       borderRadius: BorderRadius.circular(10), // Rounded corners
-                    ),
+                    ),*/
                     padding: const EdgeInsets.all(16),
                             width: 300,
                             child: const Text("I like to think that in life everything has 4 phases, from the moment the desire comes to us to moment it comes true. \n\n    We desire,\n        we see, \n            we try, \n                we materialize.",

@@ -88,10 +88,10 @@ int currentIndex = 0;
                     const SizedBox(height: 20,),
                     if (_items.isNotEmpty && widget.poem < _items.length)
                     Container(
-                      decoration: BoxDecoration(
+                  /*    decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.2), // Soft colored box
                       borderRadius: BorderRadius.circular(10), // Rounded corners
-                    ),
+                    ),*/
                     padding: const EdgeInsets.fromLTRB(2, 16, 2, 16),
                       child: Text(
                         _items[widget.poem]['poem'] ?? 'No poem available',
