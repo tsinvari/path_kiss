@@ -6,14 +6,19 @@ import 'package:path_kiss/poem.dart';
 
 class PathPage extends StatefulWidget {
 
-  PathPage({super.key, required this.language});
-  final String language;
+  PathPage({super.key});
+  
 
   @override
   State<PathPage> createState() => PathPageState();
 }
 
 class PathPageState extends State<PathPage> {
+   String selecLanguage = "Español";
+
+  final List<String> languages = [
+    "Español","English"
+  ];
 
   late List _items;
 
@@ -29,7 +34,7 @@ class PathPageState extends State<PathPage> {
       final response = await rootBundle.loadString('assets/poetry.json');
       final data = await json.decode(response);
       setState(() {
-        _items = data[widget.language] ?? []; // Handle empty case
+        _items = data[selecLanguage] ?? []; 
       });
     } catch (e) {
       print('Error loading JSON: $e');
@@ -43,10 +48,10 @@ class PathPageState extends State<PathPage> {
         decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3), // Adjust the shadow color and opacity
+            color: Colors.black.withOpacity(0.3), 
             spreadRadius: 2,
             blurRadius: 5,
-            offset: const Offset(0, 3), // Adjust the shadow offset
+            offset: const Offset(0, 3), 
           ),
         ],
       ),
@@ -54,7 +59,7 @@ class PathPageState extends State<PathPage> {
           onTap: () {
             if (index < _items.length) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => PoemPage(language: widget.language, poem: index),
+                builder: (context) => PoemPage(language: selecLanguage, poem: index),
               ));
             }
           },
@@ -78,7 +83,7 @@ class PathPageState extends State<PathPage> {
                     Text(
                       _items[index]['title'],
                       style: const TextStyle(
-                        fontSize: 24, // Adjust the font size as needed
+                        fontSize: 24, 
                         fontWeight: FontWeight.bold,
                         fontFamily: 'MarketPro')),
                         
@@ -99,9 +104,9 @@ class PathPageState extends State<PathPage> {
         onPressed: () {},
         style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25), // Circular shape
+                borderRadius: BorderRadius.circular(25), 
               ),
-              elevation: 8, // Elevation at the bottom
+              elevation: 8, 
             ),
         child: Transform.scale(
           scale: 10,
@@ -128,7 +133,7 @@ class PathPageState extends State<PathPage> {
           image: DecorationImage(
             image: const AssetImage('assets/images/background.png'), 
             fit: BoxFit.cover,  
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(1),  BlendMode.dstOver)
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.9),  BlendMode.dstOver)
 
           ),
         ),
@@ -138,12 +143,55 @@ class PathPageState extends State<PathPage> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                   height: 75,
                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                    canvasColor: Colors.black54),
+                    child: Container(
+                      decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(10), // Set border radius here
+                    ),
+                      child: DropdownButton<String>(
+                      dropdownColor: Colors.black.withOpacity(0),
+                      underline: SizedBox(),
+                      hint: const Text("Language", style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'MarketPro',),),
+                      value: selecLanguage,
+                      items: languages.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontFamily: 'MarketPro',
+                                                      ),),
+                          );
+                        }).toList(),
+                      onChanged: (String? value) {
+                        if (value != null){
+                          setState(() {
+                            selecLanguage = value;
+                          });
+                        }              
+                        }),
+                    ),
+                  ),
+                )
                 ],
               ),
             Row(

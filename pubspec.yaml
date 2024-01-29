@@ -85,6 +85,9 @@ flutter:
       - asset: assets/fonts/MarketPro.ttf
       - asset: assets/fonts/MarketPro-Bold.ttf
         weight: 700
+    - family: WorstveldSling
+      fonts:
+      - asset: assets/fonts/WorstveldSlingBold.ttf
 
   #
   # For details regarding fonts from package dependencies,

@@ -33,11 +33,6 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
-  String selecLanguage = "Español";
-
-  final List<String> languages = [
-    "Español","English"
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -60,48 +55,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 75,
                  ),
             Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                   margin: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Theme(
-                    data: Theme.of(context).copyWith(
-                    canvasColor: Colors.black54),
-                    child: Container(
-                      decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(10), // Set border radius here
-                    ),
-                      child: DropdownButton<String>(
-                      dropdownColor: Colors.black.withOpacity(0),
-                      underline: SizedBox(),
-                      hint: const Text("Language", style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'MarketPro',),),
-                      value: selecLanguage,
-                      items: languages.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value,style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontFamily: 'MarketPro',
-                                                      ),),
-                          );
-                        }).toList(),
-                      onChanged: (String? value) {
-                        if (value != null){
-                          setState(() {
-                            selecLanguage = value;
-                          });
-                        }              
-                        }),
-                    ),
-                  ),
-                )
+                  child: const Text("Path to a kiss", 
+                          style: TextStyle(
+                            fontFamily: "MarketPro",
+                            color: Colors.amber,
+                            fontSize: 40,
+                          ),),
+                  )
                 ],
               ),
-            Container(height: 30,),
+            Container(height: 15,),
             Container(
               alignment: Alignment.center,
               height: 800,
@@ -109,8 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                      Container(
             /*          decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2), // Soft colored box
-                      borderRadius: BorderRadius.circular(10), // Rounded corners
+                      color: Colors.grey.withOpacity(0.2), 
+                      borderRadius: BorderRadius.circular(10), 
                     ),*/
                     padding: const EdgeInsets.all(16),
                             width: 300,
@@ -125,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(height: 50),
                     ElevatedButton(
                       onPressed: (){Navigator.of(context).push(
-                                          MaterialPageRoute(builder: (context) => PathPage(language: selecLanguage,)));}, 
+                                          MaterialPageRoute(builder: (context) => PathPage()));}, 
                       child: const Text('Walk with me',
                       style: TextStyle(
                             fontSize: 24,
