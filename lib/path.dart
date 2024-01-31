@@ -65,7 +65,7 @@ class PathPageState extends State<PathPage> {
           },
           child: 
           Stack(
-          alignment: Alignment.center,
+            alignment: Alignment.center,
             children: <Widget>[
               if (index < _items.length)
                  Image.asset(
@@ -95,7 +95,7 @@ class PathPageState extends State<PathPage> {
       ),
     );
   }
-
+// not used anymore
       Widget customDot(double angleFeet) {
     return SizedBox(
       width: 50,

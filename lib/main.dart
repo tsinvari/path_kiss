@@ -94,12 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: (){Navigator.of(context).push(
                                           MaterialPageRoute(builder: (context) => PathPage()));}, 
                       child: const Text('Walk with me',
-                      style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: 'Verdana',
-                            fontStyle: FontStyle.italic,
-                            color: Colors.black,
-                        ),),
+                              style: TextStyle(
+                                    fontSize: 24,
+                                    fontFamily: 'Verdana',
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black,
+                                ),),
                       ),                  
                   ],
                 )
